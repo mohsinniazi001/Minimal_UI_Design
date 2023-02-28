@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: MyWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -100,26 +101,92 @@ class _MyWidgetState extends State<MyWidget> {
                   topLeft: Radius.circular(75),
                 )),
             child: ListView(
-              primary: false,
-              padding: const EdgeInsets.only(left: 20, right: 25),
+              // primary: false,
+              padding: const EdgeInsets.only(left: 25, right: 25),
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: .0),
-                  // ignore: sized_box_for_whitespace
+                  padding: const EdgeInsets.only(top: 40),
                   child: Container(
                     height: MediaQuery.of(context).size.height - 300,
                     child: ListView(children: [
                       buildFooditems(
-                          "assests/plate1.png", "Salmon Food", '\$2400'),
+                          "assests/plate1.png", "Salmon Food", '\$24.00'),
                       buildFooditems(
-                          "assests/plate2.png", "Spring Dish", '\$2200'),
+                          "assests/plate2.png", "Spring Dish", '\$22.00'),
                       buildFooditems(
-                          "assests/plate3.png", "Avocado Dish", '\$2400'),
+                          "assests/plate3.png", "Avocado Dish", '\$24.00'),
                       buildFooditems(
-                          "assests/plate4.png", "Berry Bowl", '\$1800'),
+                          "assests/plate4.png", "Berry Bowl", '\$18.00'),
                     ]),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.grey,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.grey,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Container(
+                        // width: 80,
+                        // height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            color: Colors.grey,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: TextButton(
+                            onPressed: (() {}),
+                            child: const Text(
+                              'Check Out',
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.black,
+                                // fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
@@ -130,12 +197,16 @@ class _MyWidgetState extends State<MyWidget> {
 
   Widget buildFooditems(String imgPath, String foodTitle, String price) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10.0, right: 10, top: 10),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          print("you click on inkwelll");
+        },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   Hero(
@@ -150,6 +221,7 @@ class _MyWidgetState extends State<MyWidget> {
                     width: 10,
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         foodTitle,
@@ -174,7 +246,9 @@ class _MyWidgetState extends State<MyWidget> {
               ),
             ),
             IconButton(
-              onPressed: (() {}),
+              onPressed: (() {
+                print('you tapped add button');
+              }),
               icon: const Icon(Icons.add),
               color: Colors.black,
             ),
